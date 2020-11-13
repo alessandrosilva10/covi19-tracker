@@ -11,10 +11,7 @@
 ### 🏠 [Homepage](https://www.covid19.herokuapp.com)
 
 ### ✨ [Demo](https://www.covid19.herokuapp.com)
-<video width="320" height="240" controls>
-  <source src="https://www.youtube.com/watch?v=mE7cq37FkYA&feature=youtu.be" type="video/mp4">
-</video>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mE7cq37FkYA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ## Install
 
 ```sh
