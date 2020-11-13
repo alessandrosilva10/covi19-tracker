@@ -12,7 +12,7 @@
 
 ### ✨ [Demo](https://www.covid19.herokuapp.com)
 
-<img src="https://gifs.com/gif/project-k8Ep9K"></img>
+<img src="https://j.gifs.com/k8Ep9K.gif">
 
 ## Install
 
