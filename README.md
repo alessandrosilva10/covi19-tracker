@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Trabalho da matéria Tópicos Avançados em Tecnologia sobre Design Patterns 👋</h1>
+<h1 align="center">Projeto sobre Covid19 - Tópicos Avançados em Tecnologia utilizando Design Patterns 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="#" target="_blank">
@@ -11,6 +11,8 @@
 ### 🏠 [Homepage](https://www.covid19.herokuapp.com)
 
 ### ✨ [Demo](https://www.covid19.herokuapp.com)
+
+<img src="https://j.gifs.com/k8Ep9K.gif">
 
 ## Install
 
