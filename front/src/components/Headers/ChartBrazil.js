@@ -5,6 +5,7 @@ import 'chart.js'
 import { css } from "@emotion/core";
 import MoonLoader from "react-spinners/MoonLoader";
 import { FormControlLabel, FormControl, FormLabel, RadioGroup, Radio } from '@material-ui/core';
+import Donut from './Donut';
 
 // Can be a string as well. Need to ensure each key-value pair ends with ;
 const override = css`
@@ -50,6 +51,7 @@ class ChartBrazil extends Component {
         mortes[i] = data[i].deaths;
         casos[i] = data[i].cases;
       }
+      //this.setState({uf: uf,mortes:mortes});
       this.setState({total_mortes: mortes.reduce(function(acc, val) { return acc + val; }, 0)});
       this.setState({casos: casos.reduce(function(acc, val) { return acc + val; }, 0)});
       setTimeout(() => {  this.setState({status: 1}) }, 3000);
@@ -57,8 +59,18 @@ class ChartBrazil extends Component {
      
      this.state = {
       status: 0,
+      uf: '',
+      mortes: '',
       checked: 'line',
+      seriesdonut: mortes,
+      chartOptions: {
+        labels: uf
+      },
+      fill: {
+        type: 'gradient',
+      },
       dados_api_pais: [],
+      optionsdonut: {},
       options: {
         chart: {
           id: "basic-bar"
@@ -72,12 +84,13 @@ class ChartBrazil extends Component {
           name: "Número de mortes",
           data: mortes
         }
-      ]
+      ],
     };
   }
   
   handleChange = (event) => {
     this.setState({checked: event.target.value});;
+    console.log(event.target.target)
   };
 
   render() {  
@@ -90,29 +103,46 @@ class ChartBrazil extends Component {
         <FormControl component="fieldset">
             <FormLabel component="legend">Tipo do gráfico</FormLabel>
             <RadioGroup aria-label="gender" name="gender1" value={this.state.checked} onChange={this.handleChange}>
-                <FormControlLabel value="line" checked="true" control={<Radio />} label="Gráfico em Linha" />
-                <FormControlLabel value="donut" control={<Radio />} label="Gráfico em Barra" />
-                <FormControlLabel value="mist" control={<Radio />} label="Gráfico Misto" />
+                <FormControlLabel value="line" control={<Radio />} label="Gráfico em Linha" />
+                <FormControlLabel value="donut" control={<Radio />} label="Gráfico em Rosquinha" />
+                <FormControlLabel value="bar" control={<Radio />} label="Gráfico em Barra" />
             </RadioGroup>
         </FormControl>
         </div>
         </div>}
         <div className="row">
-          <div className="mixed-chart">
-          {this.state.status == 1 &&
+
+          {this.state.status == 1 && this.state.checked == 'line' &&
+          <div className="mixed-chart"> && 
           <Chart
               options={this.state.options}
               series={this.state.series}
               type="line"
               width="850"
             />
+            <div>
+            <br />
+             <span>Total de mortes: {this.state.total_mortes}</span> <br />
+             <span>Total de casos: {this.state.casos}</span> <br />
+            <span>Informações atualizadas: {data.getHours()} horas e {data.getMinutes()} minutos do horário de Brasília</span>
+            </div>
+            </div>
           }
-           {this.state.status == 1 && <div>
-          <br />
-           <span>Total de mortes: {this.state.total_mortes}</span> <br />
-           <span>Total de casos: {this.state.casos}</span> <br />
-          <span>Informações atualizadas: {data.getHours()} horas e {data.getMinutes()} minutos do horário de Brasília</span></div>}
-          </div>
+          {this.state.status == 1 && this.state.checked == 'donut' &&
+            <div className="donut">
+            <Chart options={this.state.chartOptions} series={this.state.seriesdonut} type="donut" width="700" />
+            </div>
+          }
+          {this.state.status == 1 && this.state.checked == 'bar' &&
+                 <div className="mixed-chart">
+                 <Chart
+                   options={this.state.options}
+                   series={this.state.series}
+                   type="bar"
+                   width="900"
+                 />
+               </div>
+          }
         </div>
       </div>
     );
